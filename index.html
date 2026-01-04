@@ -2,9 +2,8 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
-<title>Loading IPTV...</title>
-
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Loading IPTV…</title>
 
 <style>
 body {
@@ -16,29 +15,23 @@ body {
     align-items: center;
     justify-content: center;
     height: 100vh;
-    text-align: center;
 }
 </style>
 </head>
 
 <body>
-<div>
-    <h2>Loading IPTV…</h2>
-    <p>Detecting your device</p>
-</div>
+<div>Loading IPTV…</div>
 
 <script>
-(function () {
-    const isMobile =
-        /Android|iPhone|iPad|iPod|Opera Mini|IEMobile/i.test(navigator.userAgent)
-        || window.innerWidth <= 768;
+const isMobile =
+  /Android|iPhone|iPad|iPod|Opera Mini|IEMobile/i.test(navigator.userAgent)
+  || window.innerWidth <= 768;
 
-    if (isMobile) {
-        window.location.href = "index-mobile.html";
-    } else {
-        window.location.href = "indexPC.html";
-    }
-})();
+if (isMobile) {
+    window.location.replace("index-mobile.html");
+} else {
+    window.location.replace("indexPC.html");
+}
 </script>
 
 </body>
