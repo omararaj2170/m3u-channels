@@ -16,23 +16,75 @@ body {
     justify-content: center;
     height: 100vh;
 }
+
+#box {
+    width: 280px;
+    text-align: center;
+}
+
+#text {
+    margin-bottom: 15px;
+    font-size: 16px;
+    opacity: 0.9;
+}
+
+#bar {
+    width: 100%;
+    height: 10px;
+    background: #222;
+    border-radius: 6px;
+    overflow: hidden;
+}
+
+#progress {
+    height: 100%;
+    width: 0%;
+    background: #00ff99;
+    transition: width 0.1s linear;
+}
 </style>
 </head>
 
 <body>
-<div>Loading IPTV…</div>
+
+<div id="box">
+    <div id="text">Detecting your device…</div>
+    <div id="bar">
+        <div id="progress"></div>
+    </div>
+</div>
 
 <script>
+const TOTAL_TIME = 5000; // 5 seconds
+const INTERVAL = 50;    // smooth bar
+let elapsed = 0;
+
 const isMobile =
   /Android|iPhone|iPad|iPod|Opera Mini|IEMobile/i.test(navigator.userAgent)
   || window.innerWidth <= 768;
 
-if (isMobile) {
-    window.location.replace("index-mobile.html");
-} else {
-    window.location.replace("indexPC.html");
-}
+const progress = document.getElementById("progress");
+const text = document.getElementById("text");
+
+const timer = setInterval(() => {
+    elapsed += INTERVAL;
+    const percent = Math.min((elapsed / TOTAL_TIME) * 100, 100);
+    progress.style.width = percent + "%";
+
+    if (elapsed >= TOTAL_TIME) {
+        clearInterval(timer);
+        text.textContent = "Loading IPTV…";
+
+        if (isMobile) {
+            window.location.href = "index-mobile.html";
+        } else {
+            window.location.href = "desktop.html";
+        }
+    }
+}, INTERVAL);
 </script>
 
+</body>
+</html>
 </body>
 </html>
