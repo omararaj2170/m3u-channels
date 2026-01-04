@@ -66,7 +66,39 @@ body {
 }
 </style>
 </head>
+<style>
+#channels {
+  display: none;
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 40%;
+  height: 100vh;
+  background: #000;
+  overflow-y: auto;
+  font-family: Arial, sans-serif;
+}
 
+.channel {
+  display: flex;
+  gap: 14px;
+  padding: 14px;
+  font-size: 22px;
+  border-bottom: 1px solid #222;
+  color: white;
+}
+
+.channel span.number {
+  width: 60px;
+  color: #00aaff;
+  font-weight: bold;
+}
+
+.channel.active {
+  background: #0055aa;
+}
+</style>
+</head>
 <body>
 
 <div id="loading">Scanning channels…</div>
@@ -161,5 +193,122 @@ document.addEventListener("keydown", e => {
 });
 </script>
 
+</body>
+  <script>
+document.addEventListener("DOMContentLoaded", () => {
+  const channelList = document.getElementById("channels");
+
+  if (!channelList) return;
+
+  // Hide channel list by default (TV-style)
+  channelList.style.display = "none";
+
+  function toggleChannels() {
+    channelList.style.display =
+      channelList.style.display === "none" ? "block" : "none";
+  }
+
+  // Listen for TV remote OK / Enter
+  document.addEventListener("keydown", (e) => {
+    if (
+      e.key === "Enter" ||
+      e.key === "OK" ||
+      e.keyCode === 13
+    ) {
+      e.preventDefault();
+      toggleChannels();
+    }
+  });
+});
+</script>
+</body>
+  <script>
+let currentIndex = 0;
+let channels = [];
+
+document.addEventListener("DOMContentLoaded", () => {
+  const list = document.getElementById("channels");
+
+  function render() {
+    list.innerHTML = "";
+    channels.forEach((ch, i) => {
+      const div = document.createElement("div");
+      div.className = "channel" + (i === currentIndex ? " active" : "");
+      div.innerHTML = `
+        <span class="number">${String(i + 1).padStart(3, "0")}</span>
+        <span>${ch.name}</span>
+      `;
+      div.onclick = () => play(ch.url);
+      list.appendChild(div);
+    });
+  }
+
+  document.addEventListener("keydown", e => {
+    if (e.key === "Enter" || e.keyCode === 13) {
+      list.style.display = "block";
+    }
+
+    if (e.key === "ArrowDown") {
+      currentIndex = Math.min(currentIndex + 1, channels.length - 1);
+      render();
+    }
+
+    if (e.key === "ArrowUp") {
+      currentIndex = Math.max(currentIndex - 1, 0);
+      render();
+    }
+
+    if (e.key === "OK") {
+      play(channels[currentIndex].url);
+    }
+  });
+
+  fetch("playlist.m3u")
+    .then(r => r.text())
+    .then(data => {
+      let temp = {};
+      data.split("\n").forEach(line => {
+        line = line.trim();
+        if (line.startsWith("#EXTINF")) {
+          temp = { name: line.split(",").pop() };
+        } else if (line.startsWith("http")) {
+          temp.url = line;
+          channels.push(temp);
+        }
+      });
+      render();
+    });
+});
+
+function play(url) {
+  const video = document.getElementById("video");
+  video.src = url;
+  video.play().catch(()=>{});
+}
+</script>
+</body>
+  <script>
+let inputBuffer = "";
+let inputTimer;
+const inputTimeout = 1500; // 1.5s to complete number
+
+document.addEventListener("keydown", e => {
+  // Only number keys (0-9)
+  if (e.key >= "0" && e.key <= "9") {
+    inputBuffer += e.key;
+
+    clearTimeout(inputTimer);
+    inputTimer = setTimeout(() => {
+      const index = parseInt(inputBuffer, 10) - 1; // 1-based numbering
+      if (channels[index]) {
+        currentIndex = index;
+        play(channels[currentIndex].url);
+        render(); // update highlight
+      }
+      inputBuffer = "";
+    }, inputTimeout);
+  }
+});
+</script>
 </body>
 </html>
