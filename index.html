@@ -1,0 +1,180 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>IPTV Player</title>
+
+<script src="https://cdn.jsdelivr.net/npm/hls.js@latest"></script>
+
+<style>
+body {
+    margin: 0;
+    font-family: Arial, sans-serif;
+    background: #0d0d0d;
+    color: white;
+    display: flex;
+    height: 100vh;
+}
+
+#sidebar {
+    width: 340px;
+    background: #161616;
+    display: flex;
+    flex-direction: column;
+}
+
+#search {
+    padding: 10px;
+    border: none;
+    outline: none;
+    background: #222;
+    color: white;
+}
+
+#channels {
+    flex: 1;
+    overflow-y: auto;
+}
+
+.channel {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    padding: 10px;
+    cursor: pointer;
+    border-bottom: 1px solid #222;
+}
+
+.channel:hover {
+    background: #2a2a2a;
+}
+
+.channel img {
+    width: 40px;
+    height: 40px;
+    object-fit: contain;
+    background: black;
+}
+
+.group {
+    padding: 8px;
+    background: #111;
+    font-weight: bold;
+    border-bottom: 1px solid #222;
+}
+
+#player {
+    flex: 1;
+    background: black;
+}
+
+video {
+    width: 100%;
+    height: 100%;
+}
+</style>
+</head>
+
+<body>
+
+<div id="sidebar">
+    <input id="search" placeholder="Search channels...">
+    <div id="channels"></div>
+</div>
+
+<div id="player">
+    <video id="video" controls autoplay></video>
+</div>
+
+<script>
+const M3U_URL = "playlist.m3u"; // or RAW GitHub URL
+
+let allChannels = [];
+let hls;
+
+fetch(M3U_URL)
+.then(r => r.text())
+.then(parseM3U);
+
+function parseM3U(data) {
+    const lines = data.split("\n");
+    let ch = {};
+
+    lines.forEach(line => {
+        line = line.trim();
+
+        if (line.startsWith("#EXTINF")) {
+            ch = {};
+            ch.name = line.split(",").pop();
+            ch.logo = (line.match(/tvg-logo="([^"]+)"/) || [])[1] || "";
+            ch.group = (line.match(/group-title="([^"]+)"/) || [])[1] || "Other";
+        } 
+        else if (line.startsWith("http")) {
+            ch.url = line;
+            allChannels.push(ch);
+        }
+    });
+
+    renderChannels(allChannels);
+}
+
+function renderChannels(list) {
+    const container = document.getElementById("channels");
+    container.innerHTML = "";
+
+    let currentGroup = "";
+
+    list.forEach(ch => {
+        if (ch.group !== currentGroup) {
+            currentGroup = ch.group;
+            const g = document.createElement("div");
+            g.className = "group";
+            g.textContent = currentGroup;
+            container.appendChild(g);
+        }
+
+        const div = document.createElement("div");
+        div.className = "channel";
+
+        const img = document.createElement("img");
+        img.src = ch.logo || "";
+        img.onerror = () => img.style.display = "none";
+
+        const span = document.createElement("span");
+        span.textContent = ch.name;
+
+        div.appendChild(img);
+        div.appendChild(span);
+        div.onclick = () => play(ch.url);
+
+        container.appendChild(div);
+    });
+}
+
+function play(url) {
+    const video = document.getElementById("video");
+
+    if (Hls.isSupported()) {
+        if (hls) hls.destroy();
+        hls = new Hls();
+        hls.loadSource(url);
+        hls.attachMedia(video);
+    } 
+    else if (video.canPlayType("application/vnd.apple.mpegurl")) {
+        video.src = url;
+    } 
+    else {
+        alert("Stream not supported");
+    }
+}
+
+document.getElementById("search").addEventListener("input", e => {
+    const q = e.target.value.toLowerCase();
+    renderChannels(
+        allChannels.filter(c => c.name.toLowerCase().includes(q))
+    );
+});
+</script>
+
+</body>
+</html>
