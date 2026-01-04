@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>IPTV TV</title>
+<title>Satellite IPTV</title>
 
 <style>
 * { box-sizing: border-box; }
@@ -16,34 +16,42 @@ body {
   overflow: hidden;
 }
 
-/* ===== PLAYER ===== */
-#player {
-  height: 55vh;
+/* ===== VIDEO ===== */
+#video {
+  width: 100vw;
+  height: 100vh;
   background: black;
 }
 
-video {
+/* ===== INFO BAR ===== */
+#info {
+  position: absolute;
+  left: 0;
+  bottom: 0;
   width: 100%;
-  height: 100%;
-  background: black;
-}
-
-/* ===== CHANNEL LIST ===== */
-#channels {
-  height: 45vh;
-  overflow-y: auto;
-  background: #0b0b0b;
-}
-
-.channel {
-  padding: 18px 24px;
+  height: 110px;
+  background: linear-gradient(to top, rgba(0,0,0,.85), transparent);
+  display: flex;
+  align-items: center;
+  padding: 20px;
+  gap: 20px;
   font-size: 22px;
-  border-bottom: 1px solid #222;
+  opacity: 0;
+  transition: opacity .3s;
 }
 
-.channel.focused {
-  background: #00ff88;
-  color: black;
+#info.show {
+  opacity: 1;
+}
+
+#ch-num {
+  font-size: 36px;
+  font-weight: bold;
+  color: #00ff88;
+}
+
+#ch-name {
+  font-size: 26px;
 }
 
 /* ===== LOADING ===== */
@@ -54,29 +62,30 @@ video {
   display: flex;
   align-items: center;
   justify-content: center;
-  font-size: 22px;
+  font-size: 24px;
 }
 </style>
 </head>
 
 <body>
 
-<div id="loading">Loading IPTV…</div>
+<div id="loading">Scanning channels…</div>
 
-<div id="player">
-  <video id="video" controls autoplay></video>
+<video id="video" controls autoplay></video>
+
+<div id="info">
+  <div id="ch-num">001</div>
+  <div id="ch-name">Channel</div>
 </div>
-
-<div id="channels"></div>
 
 <script src="https://cdn.jsdelivr.net/npm/hls.js@latest"></script>
 <script>
 const M3U_URL = "./playlist.m3u";
-const MAX_RENDER = 200;
 
 let channels = [];
-let focusedIndex = 0;
+let current = 0;
 let hls;
+let infoTimer;
 
 /* ===== LOAD PLAYLIST ===== */
 fetch(M3U_URL)
@@ -98,29 +107,59 @@ function parseM3U(data) {
     }
   }
 
-  render();
   document.getElementById("loading").style.display = "none";
-}
-
-/* ===== RENDER ===== */
-function render() {
-  const list = document.getElementById("channels");
-  list.innerHTML = "";
-
-  channels.slice(0, MAX_RENDER).forEach((ch, i) => {
-    const div = document.createElement("div");
-    div.className = "channel" + (i === focusedIndex ? " focused" : "");
-    div.textContent = ch.name;
-    list.appendChild(div);
-  });
-
-  scrollToFocused();
+  play(0);
 }
 
 /* ===== PLAY ===== */
 function play(index) {
+  if (!channels[index]) return;
+
+  current = index;
+  showInfo();
+
   const video = document.getElementById("video");
   const url = channels[index].url;
 
   if (Hls.isSupported()) {
     if (hls) hls.destroy();
+    hls = new Hls();
+    hls.loadSource(url);
+    hls.attachMedia(video);
+  } else {
+    video.src = url;
+  }
+}
+
+/* ===== INFO BAR ===== */
+function showInfo() {
+  const info = document.getElementById("info");
+  document.getElementById("ch-num").textContent =
+    String(current + 1).padStart(3, "0");
+  document.getElementById("ch-name").textContent =
+    channels[current].name;
+
+  info.classList.add("show");
+
+  clearTimeout(infoTimer);
+  infoTimer = setTimeout(() => info.classList.remove("show"), 3000);
+}
+
+/* ===== REMOTE CONTROLS ===== */
+document.addEventListener("keydown", e => {
+  if (e.key === "ArrowUp") {
+    play((current + 1) % channels.length);
+  }
+
+  if (e.key === "ArrowDown") {
+    play((current - 1 + channels.length) % channels.length);
+  }
+
+  if (e.key === "Enter" || e.key === "Info") {
+    showInfo();
+  }
+});
+</script>
+
+</body>
+</html>
