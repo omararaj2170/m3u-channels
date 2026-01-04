@@ -3,9 +3,13 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>IPTV Mobile</title>
+<title>IPTV Player</title>
 
 <style>
+* {
+  box-sizing: border-box;
+}
+
 body {
   margin: 0;
   background: #0b0b0b;
@@ -13,19 +17,22 @@ body {
   font-family: Arial, sans-serif;
 }
 
+/* ===== PLAYER ===== */
 #player {
+  position: relative;
+  z-index: 1;
   background: black;
 }
 
 video {
   width: 100%;
-  max-height: 240px;
-  background: black;
+  height: auto;
 }
 
+/* ===== SEARCH ===== */
 #search {
   width: 100%;
-  padding: 12px;
+  padding: 14px;
   font-size: 16px;
   border: none;
   outline: none;
@@ -33,9 +40,13 @@ video {
   color: white;
 }
 
+/* ===== CHANNEL LIST ===== */
 #channels {
-  height: calc(100vh - 280px);
+  position: relative;
+  z-index: 10;
+  height: calc(100vh - 220px);
   overflow-y: auto;
+  -webkit-overflow-scrolling: touch;
 }
 
 .group {
@@ -54,6 +65,7 @@ video {
   padding: 14px;
   border-bottom: 1px solid #222;
   cursor: pointer;
+  -webkit-tap-highlight-color: transparent;
 }
 
 .channel:active {
@@ -61,15 +73,11 @@ video {
 }
 
 .channel img {
-  width: 48px;
-  height: 48px;
+  width: 42px;
+  height: 42px;
   object-fit: contain;
   background: #000;
   border-radius: 6px;
-}
-
-.channel span {
-  font-size: 16px;
 }
 </style>
 </head>
@@ -77,7 +85,7 @@ video {
 <body>
 
 <div id="player">
-  <video id="video" controls playsinline></video>
+  <video id="video" controls playsinline muted></video>
 </div>
 
 <input id="search" placeholder="Search channels...">
@@ -93,33 +101,35 @@ let hls;
 
 fetch(M3U_URL)
   .then(r => r.text())
-  .then(parseM3U);
+  .then(parseM3U)
+  .catch(err => console.error(err));
 
 function parseM3U(data) {
   const lines = data.split("\n");
   let ch = {};
 
-  lines.forEach(line => {
+  for (let line of lines) {
     line = line.trim();
 
     if (line.startsWith("#EXTINF")) {
-      ch = {};
-      ch.name = line.split(",").pop();
-      ch.logo = (line.match(/tvg-logo="([^"]+)"/) || [])[1] || "";
-      ch.group = (line.match(/group-title="([^"]+)"/) || [])[1] || "Other";
+      ch = {
+        name: line.split(",").pop(),
+        logo: (line.match(/tvg-logo="([^"]+)"/) || [])[1] || "",
+        group: (line.match(/group-title="([^"]+)"/) || [])[1] || "Other"
+      };
     } 
     else if (line.startsWith("http")) {
       ch.url = line;
       allChannels.push(ch);
     }
-  });
+  }
 
   render(allChannels);
 }
 
 function render(list) {
-  const c = document.getElementById("channels");
-  c.innerHTML = "";
+  const container = document.getElementById("channels");
+  container.innerHTML = "";
   let currentGroup = "";
 
   list.forEach(ch => {
@@ -128,24 +138,21 @@ function render(list) {
       const g = document.createElement("div");
       g.className = "group";
       g.textContent = currentGroup;
-      c.appendChild(g);
+      container.appendChild(g);
     }
 
     const div = document.createElement("div");
     div.className = "channel";
 
-    const img = document.createElement("img");
-    img.src = ch.logo;
-    img.onerror = () => img.style.display = "none";
+    div.innerHTML = `
+      <img src="${ch.logo}" onerror="this.style.display='none'">
+      <span>${ch.name}</span>
+    `;
 
-    const span = document.createElement("span");
-    span.textContent = ch.name;
+    div.addEventListener("touchstart", () => play(ch.url), { passive: true });
+    div.addEventListener("click", () => play(ch.url));
 
-    div.appendChild(img);
-    div.appendChild(span);
-    div.onclick = () => play(ch.url);
-
-    c.appendChild(div);
+    container.appendChild(div);
   });
 }
 
@@ -157,8 +164,7 @@ function play(url) {
     hls = new Hls();
     hls.loadSource(url);
     hls.attachMedia(video);
-  } 
-  else if (video.canPlayType("application/vnd.apple.mpegurl")) {
+  } else {
     video.src = url;
   }
 }
