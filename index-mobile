@@ -1,0 +1,185 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Mobile IPTV</title>
+
+<script src="https://cdn.jsdelivr.net/npm/hls.js@latest"></script>
+
+<style>
+body {
+    margin: 0;
+    font-family: Arial, sans-serif;
+    background: #000;
+    color: #fff;
+}
+
+/* ===== VIDEO ===== */
+#player {
+    width: 100%;
+    background: black;
+}
+
+video {
+    width: 100%;
+    height: 220px;
+    background: black;
+}
+
+/* ===== SEARCH ===== */
+#search {
+    width: 100%;
+    padding: 12px;
+    border: none;
+    outline: none;
+    background: #111;
+    color: white;
+    font-size: 16px;
+}
+
+/* ===== CHANNEL LIST ===== */
+#channels {
+    height: calc(100vh - 270px);
+    overflow-y: auto;
+}
+
+.group {
+    padding: 8px 12px;
+    font-size: 13px;
+    font-weight: bold;
+    background: #111;
+    color: #aaa;
+    border-bottom: 1px solid #222;
+}
+
+.channel {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    padding: 14px;
+    border-bottom: 1px solid #222;
+    cursor: pointer;
+}
+
+.channel:active {
+    background: #222;
+}
+
+.channel img {
+    width: 48px;
+    height: 48px;
+    object-fit: contain;
+    background: #000;
+    border-radius: 6px;
+}
+
+.channel span {
+    font-size: 16px;
+}
+
+/* ===== SCROLLBAR ===== */
+#channels::-webkit-scrollbar {
+    width: 4px;
+}
+
+#channels::-webkit-scrollbar-thumb {
+    background: #444;
+}
+</style>
+</head>
+
+<body>
+
+<div id="player">
+    <video id="video" controls autoplay playsinline></video>
+</div>
+
+<input id="search" placeholder="Search channels...">
+
+<div id="channels"></div>
+
+<script>
+const M3U_URL = "playlist.m3u"; // or RAW GitHub URL
+
+let allChannels = [];
+let hls;
+
+fetch(M3U_URL)
+.then(r => r.text())
+.then(parseM3U);
+
+function parseM3U(data) {
+    const lines = data.split("\n");
+    let ch = {};
+
+    lines.forEach(line => {
+        line = line.trim();
+
+        if (line.startsWith("#EXTINF")) {
+            ch = {};
+            ch.name = line.split(",").pop();
+            ch.logo = (line.match(/tvg-logo="([^"]+)"/) || [])[1] || "";
+            ch.group = (line.match(/group-title="([^"]+)"/) || [])[1] || "Other";
+        } else if (line.startsWith("http")) {
+            ch.url = line;
+            allChannels.push(ch);
+        }
+    });
+
+    render(allChannels);
+}
+
+function render(list) {
+    const c = document.getElementById("channels");
+    c.innerHTML = "";
+    let currentGroup = "";
+
+    list.forEach(ch => {
+        if (ch.group !== currentGroup) {
+            currentGroup = ch.group;
+            const g = document.createElement("div");
+            g.className = "group";
+            g.textContent = currentGroup;
+            c.appendChild(g);
+        }
+
+        const div = document.createElement("div");
+        div.className = "channel";
+
+        const img = document.createElement("img");
+        img.src = ch.logo;
+        img.onerror = () => img.style.display = "none";
+
+        const span = document.createElement("span");
+        span.textContent = ch.name;
+
+        div.appendChild(img);
+        div.appendChild(span);
+        div.onclick = () => play(ch.url);
+
+        c.appendChild(div);
+    });
+}
+
+function play(url) {
+    const video = document.getElementById("video");
+
+    if (Hls.isSupported()) {
+        if (hls) hls.destroy();
+        hls = new Hls();
+        hls.loadSource(url);
+        hls.attachMedia(video);
+    } else if (video.canPlayType("application/vnd.apple.mpegurl")) {
+        video.src = url;
+    }
+}
+
+document.getElementById("search").addEventListener("input", e => {
+    const q = e.target.value.toLowerCase();
+    render(allChannels.filter(c => c.name.toLowerCase().includes(q)));
+});
+</script>
+
+</body>
+</html>
