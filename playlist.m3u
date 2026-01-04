@@ -1,0 +1,111 @@
+#EXTM3U
+
+##################################################
+# 🏁 RACING / MOTORSPORT (EN)
+##################################################
+#EXTINF:-1 group-title="RACING | EN",Red Bull TV
+https://rbmn-live.akamaized.net/hls/live/590964/BoRB-AT/master.m3u8
+
+#EXTINF:-1 group-title="RACING | EN",Racing America
+https://racingamerica-samsungus.amagi.tv/playlist.m3u8
+
+#EXTINF:-1 group-title="RACING | EN",MAVTV Select
+https://mavtv-samsungus.amagi.tv/playlist.m3u8
+
+#EXTINF:-1 group-title="RACING | EN",Speedvision
+https://speedvision-samsungus.amagi.tv/playlist.m3u8
+
+#EXTINF:-1 group-title="RACING | EN",Torque
+https://torque-samsungus.amagi.tv/playlist.m3u8
+
+
+##################################################
+# 🔧 TUNING / MODS / CUSTOM (EN)
+##################################################
+#EXTINF:-1 group-title="TUNING | EN",PowerNation
+https://powernation-samsungus.amagi.tv/playlist.m3u8
+
+#EXTINF:-1 group-title="TUNING | EN",Auto Allstars
+https://autoallstars-samsungus.amagi.tv/playlist.m3u8
+
+#EXTINF:-1 group-title="TUNING | EN",Petrol TV
+https://petroltv-samsungus.amagi.tv/playlist.m3u8
+
+#EXTINF:-1 group-title="TUNING | EN",Fuel TV
+https://fueltv-fueltv-1-eu.rakuten.wurl.tv/playlist.m3u8
+
+
+##################################################
+# 🛠️ FIXING / GARAGE / RESTORATION (EN)
+##################################################
+#EXTINF:-1 group-title="GARAGE | EN",Garage TV
+https://garage-samsungus.amagi.tv/playlist.m3u8
+
+#EXTINF:-1 group-title="GARAGE | EN",Classic Rides
+https://classicrides-samsungus.amagi.tv/playlist.m3u8
+
+#EXTINF:-1 group-title="GARAGE | EN",MotorTrend FAST
+https://motortrend-samsungus.amagi.tv/playlist.m3u8
+
+#EXTINF:-1 group-title="GARAGE | EN",Revry Motors
+https://revrymotors-samsungus.amagi.tv/playlist.m3u8
+
+
+##################################################
+# 🚗 TESTING / REVIEWS / AUTO DOCS (EN)
+##################################################
+#EXTINF:-1 group-title="AUTO | EN",Motorvision
+https://stream.motorvision.tv/motorvision/master.m3u8
+
+#EXTINF:-1 group-title="AUTO | EN",Motorvision Classic
+https://stream.motorvision.tv/motorvision_classic/master.m3u8
+
+#EXTINF:-1 group-title="AUTO | EN",Fast & FunBox
+https://fastandfunbox-samsungus.amagi.tv/playlist.m3u8
+
+
+##################################################
+# 🏍️ MOTORCYCLES / BIKE CULTURE (EN)
+##################################################
+#EXTINF:-1 group-title="MOTORCYCLE | EN",MotoAmerica
+https://motoamerica-samsungus.amagi.tv/playlist.m3u8
+
+#EXTINF:-1 group-title="MOTORCYCLE | EN",Adventure Sports
+https://adventuresports-samsungus.amagi.tv/playlist.m3u8
+
+#EXTINF:-1 group-title="MOTORCYCLE | EN",Extreme Sports
+https://extremesports-samsungus.amagi.tv/playlist.m3u8
+
+
+##################################################
+# 🏁 CARRERAS / MOTORSPORT (ES / LATAM)
+##################################################
+#EXTINF:-1 group-title="RACING | ES",Red Bull TV Español
+https://rbmn-live.akamaized.net/hls/live/590964/BoRB-ES/master.m3u8
+
+#EXTINF:-1 group-title="RACING | ES",Motorvisión
+https://stream.motorvision.tv/motorvision/master.m3u8
+
+
+##################################################
+# 🔧 MECÁNICA / TUNING / AUTOS (ES)
+##################################################
+#EXTINF:-1 group-title="TUNING | ES",Pluto TV Autos
+https://service-stitcher.clusters.pluto.tv/stitch/hls/channel/5f4d3d06fb4ec4000758e5c2/master.m3u8
+
+#EXTINF:-1 group-title="TUNING | ES",Pluto TV Motores
+https://service-stitcher.clusters.pluto.tv/stitch/hls/channel/5f4d3cf63b4ec4000758e5b4/master.m3u8
+
+
+##################################################
+# 🛠️ TALLER / GARAGE (ES)
+##################################################
+#EXTINF:-1 group-title="GARAGE | ES",Garage TV Español
+https://garage-samsungus.amagi.tv/playlist.m3u8
+
+
+##################################################
+# 🏍️ MOTOCICLETAS (ES)
+##################################################
+#EXTINF:-1 group-title="MOTORCYCLE | ES",Mundo Moto
+https://mundomoto-samsungus.amagi.tv/playlist.m3u8
