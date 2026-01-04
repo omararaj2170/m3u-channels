@@ -272,8 +272,6 @@ rtmp://streamer.a1.net:1935/rtmplive/redundant/channels/Sporttime/SporttimeTV/mp
 rtmp://streamer.a1.net:1935/rtmplive/redundant/channels/Sporttime/SporttimeTV/mp4:channel7_800
 #EXTINF:-1,SPORT TIME TV7 HQ
 rtmp://streamer.a1.net:1935/rtmplive/redundant/channels/Sporttime/SporttimeTV/mp4:channel7_1200
-#EXTINF:-1,Sport5 1 (Israel)
-rtmp://$OPT:rtmp-raw=rtmp://s5-s.nsacdn.com:1935/sport5_Live1Repeat/Live1_1 swfUrl=http://playern.sport5.co.il/Plugins/RTMPPlugin.swf pageUrl=http://playern.sport5.co.il/Player.aspx?clipId=Live1&Type=live
 #EXTINF:-1,Sports Night
 rtmp://$OPT:rtmp-raw=rtmp://freeview.fms.visionip.tv/live/sports_tonight-sports_tonight-live-25f-16x9-SD
 #EXTINF:-1,Sports Night HD
@@ -2394,21 +2392,9 @@ https://wg.cdn.tibus.net/q102MP3128
 https://stream.audioxi.com/CLASSIC
 #EXTINF:-1 tvg-name="Sunshine 106.8" tvg-logo="https://upload.wikimedia.org/wikipedia/en/9/97/Sunshine_106.8_logo.png" tvg-id="sunshineradio.ie" group-title="Ireland",Sunshine 106.8
 https://live-bauerie.sharp-stream.com/SUN
-#EXTINF:-1 tvg-name="9 канал Ⓨ" tvg-logo="https://i.imgur.com/pttM3KQ.png" tvg-id="Channel9.il" group-title="Israel",9 канал Ⓨ
-https://www.youtube.com/@israel9tv/live
-#EXTINF:-1 tvg-name="כאן 11" tvg-logo="https://upload.wikimedia.org/wikipedia/commons/thumb/c/c8/Kan11Logo.svg/640px-Kan11Logo.svg.png" tvg-id="Kan11.il" group-title="Israel",כאן 11
-https://kan11.media.kan.org.il/hls/live/2024514/2024514/master.m3u8
-#EXTINF:-1 tvg-name="ערוץ 13" tvg-logo="https://upload.wikimedia.org/wikipedia/he/thumb/1/17/Reshet13Logo2022.svg/559px-Reshet13Logo2022.svg.png" tvg-id="Channel13.il" group-title="Israel",ערוץ 13
-https://d2xg1g9o5vns8m.cloudfront.net/out/v1/0855d703f7d5436fae6a9c7ce8ca5075/index.m3u8
-#EXTINF:-1 tvg-name="ערוץ 14" tvg-logo="https://i.imgur.com/Iq2Kb69.png" tvg-id="Now14.il" group-title="Israel",ערוץ 14
-https://now14.g-mana.live/media/91517161-44ab-4e46-af70-e9fe26117d2e/mainManifest.m3u8
-#EXTINF:-1 tvg-name="The Shopping Channel" tvg-logo="https://i.imgur.com/PEdXHSE.png" tvg-id="TheShoppingChannel.il" group-title="Israel",The Shopping Channel
+#EXTINF:-1 tvg-name="The Shopping Channel" tvg-logo="https://i.imgur.com/PEdXHSE.png" tvg-id="TheShoppingChannel.il" 
 https://shoppingil-rewriter.vidnt.com/index.m3u8
-#EXTINF:-1 tvg-name="مكان 33" tvg-logo="https://upload.wikimedia.org/wikipedia/en/5/56/MeKan_33_logo_2017.png" tvg-id="Makan33.il" group-title="Israel",مكان 33
-https://makan.media.kan.org.il/hls/live/2024680/2024680/master.m3u8
-#EXTINF:-1 tvg-name="כאן חינוכית" tvg-logo="https://upload.wikimedia.org/wikipedia/commons/thumb/6/6b/KanHinuchit.svg/640px-KanHinuchit.svg.png" tvg-id="KanEducational.il" group-title="Israel",כאן חינוכית
-https://kan23.media.kan.org.il/hls/live/2024691/2024691/master.m3u8
-#EXTINF:-1 tvg-name="Knesset" tvg-logo="https://i.imgur.com/PEdXHSE.png" tvg-id="Knesset.il" group-title="Israel",Knesset
+
 https://contact.gostreaming.tv/Knesset/myStream/playlist.m3u8
 #EXTINF:-1 tvg-name="Rai 1 Ⓖ" tvg-logo="https://i.imgur.com/CAx7yRm.png" tvg-id="Rai1.it" group-title="Italy",Rai 1 Ⓖ
 https://mediapolis.rai.it/relinker/relinkerServlet.htm?cont=2606803&output=7&forceUserAgent=rainet/4.0.5
@@ -7125,8 +7111,6 @@ https://streams2.sofast.tv/v1/master/611d79b11b77e2f571934fd80ca1413453772ac7/e3
 http://cfd-v4-service-channel-stitcher-use1-1.prd.pluto.tv/stitch/hls/channel/6549337183595c000815ad05/master.m3u8?appName=web&appVersion=unknown&clientTime=0&deviceDNT=0&deviceId=6c2a29f7-30d3-11ef-9cf5-e9ddff8ff496&deviceMake=Chrome&deviceModel=web&deviceType=web&deviceVersion=unknown&includeExtendedEvents=false&serverSideAds=false&sid=8b79f9ba-6021-48dd-b1ca-e60b7396018c
 #EXTINF:-1 group-title="Undefined",Murder She Wrote
 http://cfd-v4-service-channel-stitcher-use1-1.prd.pluto.tv/stitch/hls/channel/6549337183595c000815ad05/master.m3u8?appName=web&appVersion=unknown&clientTime=0&deviceDNT=0&deviceId=6c2a29f7-30d3-11ef-9cf5-e9ddff8ff496&deviceMake=Chrome&deviceModel=web&deviceType=web&deviceVersion=unknown&includeExtendedEvents=false&serverSideAds=false&sid=8b79f9ba-6021-48dd-b1ca-e60b7396018c
-#EXTINF:-1 group-title="Undefined",Musayof (Israel) (240p) [Not 24/7]
-http://wowza.media-line.co.il/Musayof-Live/livestream.sdp/playlist.m3u8
 #EXTINF:-1 group-title="Undefined",My Money (1080p)
 https://d3bqd6nz14unwy.cloudfront.net/scheduler/scheduleMaster/468.m3u8
 #EXTINF:-1 tvg-id="MyTVChannel.cm@SD" tvg-logo="https://i.imgur.com/vh2373L.png" group-title="Undefined",My TV Channel (720p) [Not 24/7]
@@ -13487,8 +13471,6 @@ https://telered.live:1936/jrestv/jrestv/playlist.m3u8
 https://d35j504z0x2vu2.cloudfront.net/v1/master/0bc8e8376bd8417a1b6761138aa41c26c7309312/jyotish-duniya/master.m3u8
 #EXTINF:-1 tvg-id="KTV.at@SD" tvg-logo="https://i.imgur.com/RYbR4Sf.png" group-title="Religious",K-TV (720p)
 https://d1pz8zear993v8.cloudfront.net/hlsme/kathtv.m3u8
-#EXTINF:-1 tvg-id="KabbalahforthePeopleIsrael.il@SD" tvg-logo="https://i.imgur.com/VxAHOgr.png" group-title="Religious",Kabbalah for the People (Israel) (504p) [Not 24/7]
-https://edge3.uk.kab.tv/live/tv66-heb-high/playlist.m3u8
 #EXTINF:-1 tvg-id="Kanal10Asia.se@SD" tvg-logo="https://i.imgur.com/tY7IJva.png" group-title="Religious",Kanal 10 Asia (540p)
 http://cdn-kanal10.crossnet.net:1935/kanal10/kanal10asia/playlist.m3u8
 #EXTINF:-1 tvg-id="KanshiTV.uk@SD" tvg-logo="https://i.imgur.com/w6uXMrK.png" group-title="Religious",Kanshi TV (720p) [Not 24/7]
@@ -15061,8 +15043,6 @@ https://hls.iranfarda.live/hls/stream.m3u8
 https://lenz.splus.ir/PLTV/88888888/224/3221226142/index.m3u8
 #EXTINF:-1 tvg-id="IRINN2.ir@SD" tvg-logo="https://i.imgur.com/8tzsC9h.png" group-title="News",IRINN2
 https://lenz.splus.ir/PLTV/88888888/224/3221227020/index.m3u8
-#EXTINF:-1 tvg-id="IsraelParsTV.il@SD" tvg-logo="https://i.imgur.com/UM5Gf4L.png" group-title="News",Israel Pars TV (540p)
-https://live.pars-israel.com/iptv/stream.m3u8
 #EXTINF:-1 tvg-id="IT3.ua@SD" tvg-logo="https://i.imgur.com/8rNbbY7.png" group-title="News",IT-3 (720p)
 http://cdn10.live-tv.od.ua:8081/it3od/720p/playlist.m3u8
 #EXTINF:-1 tvg-id="JaiMaharashtra.in@SD" tvg-logo="https://jiotvimages.cdn.jio.com/dare_images/images/Jai_Maharashtra.png" group-title="News",Jai Maharashtra (576p)
@@ -20965,8 +20945,7 @@ https://edge13.vedge.infomaniak.com/livecast/ik:kalactv/chunklist_w280736538.m3u
 https://edge2-moblive.yuppcdn.net/drm1/smil:kalaignartvdrm.smil/chunklist_b996000.m3u8
 #EXTINF:-1 tvg-id="KaluTV.co@SD" tvg-logo="https://i.imgur.com/MO4w3OT.jpeg" group-title="General",Kalu TV (720p)
 https://tv.kaludecolombia.com/memfs/800a956d-5ada-4bf1-ac15-0d11e689179c.m3u8
-#EXTINF:-1 tvg-id="Kan11.il@SD" tvg-logo="https://upload.wikimedia.org/wikipedia/commons/thumb/c/c8/Kan11Logo.svg/512px-Kan11Logo.svg.png" group-title="General",KAN 11 Israel (1080p)
-https://kan11w.media.kan.org.il/hls/live/2105694/2105694/master.m3u8
+#EXTINF:-1 tvg-id="Kan11.il@SD" tvg-logo="https://upload.wikimedia.org/wikipedia/commons/thumb/c/c8/Kan11Logo.svg/512px-
 #EXTINF:-1 tvg-id="Kanal0.bg@SD" tvg-logo="https://i.postimg.cc/85th310v/kanal0.png" tvg-referrer="rn-tv.com" group-title="General",Kanal 0
 https://old.rn-tv.com/k0/stream.m3u8
 #EXTINF:-1 tvg-id="Kanal3.tr@SD" tvg-logo="https://i.imgur.com/eXErSv0.png" group-title="General",Kanal 3 (1080p) [Not 24/7]
@@ -27337,6 +27316,351 @@ https://livear.cgtn.com/1000a/prog_index.m3u8
 https://linear417-gb-hls1-prd-ak.cdn.skycdp.com/100e/Content/HLS_001_1080_30/Live/channel(skynews)/index_1080-30.m3u8
 #EXTINF:-1 tvg-logo="https://i.ibb.co/dPmZMqq/bbcn.png",BBC NEWS
 https://vs-hls-push-ww-live.akamaized.net/x=4/i=urn:bbc:pips:service:bbc_news_channel_hd/pc_hd_abr_v2.m3u8
+#EXTM3U
 
+# Categories
+#EXTINF:-1,Auto
+https://iptv-org.github.io/iptv/categories/auto.m3u
+#EXTINF:-1,Business
+https://iptv-org.github.io/iptv/categories/business.m3u
+#EXTINF:-1,Comedy
+https://iptv-org.github.io/iptv/categories/comedy.m3u
+#EXTINF:-1,Documentary
+https://iptv-org.github.io/iptv/categories/documentary.m3u
+#EXTINF:-1,Education
+https://iptv-org.github.io/iptv/categories/education.m3u
+#EXTINF:-1,Entertainment
+https://iptv-org.github.io/iptv/categories/entertainment.m3u
+#EXTINF:-1,Family
+https://iptv-org.github.io/iptv/categories/family.m3u
+#EXTINF:-1,Fashion
+https://iptv-org.github.io/iptv/categories/fashion.m3u
+#EXTINF:-1,General
+https://iptv-org.github.io/iptv/categories/general.m3u
+#EXTINF:-1,Health
+https://iptv-org.github.io/iptv/categories/health.m3u
+#EXTINF:-1,History
+https://iptv-org.github.io/iptv/categories/history.m3u
+#EXTINF:-1,Hobby
+https://iptv-org.github.io/iptv/categories/hobby.m3u
+#EXTINF:-1,Kids
+https://iptv-org.github.io/iptv/categories/kids.m3u
+#EXTINF:-1,Legislative
+https://iptv-org.github.io/iptv/categories/legislative.m3u
+#EXTINF:-1,Lifestyle
+https://iptv-org.github.io/iptv/categories/lifestyle.m3u
+#EXTINF:-1,Local
+https://iptv-org.github.io/iptv/categories/local.m3u
+#EXTINF:-1,Movies
+https://iptv-org.github.io/iptv/categories/movies.m3u
+#EXTINF:-1,Music
+https://iptv-org.github.io/iptv/categories/music.m3u
+#EXTINF:-1,News
+https://iptv-org.github.io/iptv/categories/news.m3u
+#EXTINF:-1,Religious
+https://iptv-org.github.io/iptv/categories/religious.m3u
+#EXTINF:-1,Shop
+https://iptv-org.github.io/iptv/categories/shop.m3u
+#EXTINF:-1,Sport
+https://iptv-org.github.io/iptv/categories/sport.m3u
+#EXTINF:-1,Travel
+https://iptv-org.github.io/iptv/categories/travel.m3u
+#EXTINF:-1,Weather
+https://iptv-org.github.io/iptv/categories/weather.m3u
+#EXTINF:-1,XXX
+https://iptv-org.github.io/iptv/categories/xxx.m3u
+#EXTINF:-1,Other
+https://iptv-org.github.io/iptv/categories/other.m3u
 
+# Languages
+#EXTINF:-1,Akan
+https://iptv-org.github.io/iptv/languages/aka.m3u
+#EXTINF:-1,Albanian
+https://iptv-org.github.io/iptv/languages/sqi.m3u
+#EXTINF:-1,Amharic
+https://iptv-org.github.io/iptv/languages/amh.m3u
+#EXTINF:-1,Arabic
+https://iptv-org.github.io/iptv/languages/ara.m3u
+#EXTINF:-1,Armenian
+https://iptv-org.github.io/iptv/languages/hye.m3u
+#EXTINF:-1,Azerbaijani
+https://iptv-org.github.io/iptv/languages/aze.m3u
+#EXTINF:-1,Basque
+https://iptv-org.github.io/iptv/languages/eus.m3u
+#EXTINF:-1,Bengali
+https://iptv-org.github.io/iptv/languages/ben.m3u
+#EXTINF:-1,Bosnian
+https://iptv-org.github.io/iptv/languages/bos.m3u
+#EXTINF:-1,Bulgarian
+https://iptv-org.github.io/iptv/languages/bul.m3u
+#EXTINF:-1,Burmese
+https://iptv-org.github.io/iptv/languages/mya.m3u
+#EXTINF:-1,Catalan
+https://iptv-org.github.io/iptv/languages/cat.m3u
+#EXTINF:-1,Chinese
+https://iptv-org.github.io/iptv/languages/zho.m3u
+#EXTINF:-1,Croatian
+https://iptv-org.github.io/iptv/languages/hrv.m3u
+#EXTINF:-1,Czech
+https://iptv-org.github.io/iptv/languages/ces.m3u
+#EXTINF:-1,Danish
+https://iptv-org.github.io/iptv/languages/dan.m3u
+#EXTINF:-1,Dutch
+https://iptv-org.github.io/iptv/languages/nld.m3u
+#EXTINF:-1,English
+https://iptv-org.github.io/iptv/languages/eng.m3u
+#EXTINF:-1,Estonian
+https://iptv-org.github.io/iptv/languages/est.m3u
+#EXTINF:-1,Faroese
+https://iptv-org.github.io/iptv/languages/fao.m3u
+#EXTINF:-1,Finnish
+https://iptv-org.github.io/iptv/languages/fin.m3u
+#EXTINF:-1,French
+https://iptv-org.github.io/iptv/languages/fra.m3u
+#EXTINF:-1,Galician
+https://iptv-org.github.io/iptv/languages/glg.m3u
+#EXTINF:-1,Georgian
+https://iptv-org.github.io/iptv/languages/kat.m3u
+#EXTINF:-1,German
+https://iptv-org.github.io/iptv/languages/deu.m3u
+#EXTINF:-1,Hebrew
+https://iptv-org.github.io/iptv/languages/heb.m3u
+#EXTINF:-1,Hindi
+https://iptv-org.github.io/iptv/languages/hin.m3u
+#EXTINF:-1,Hungarian
+https://iptv-org.github.io/iptv/languages/hun.m3u
+#EXTINF:-1,Icelandic
+https://iptv-org.github.io/iptv/languages/isl.m3u
+#EXTINF:-1,Indonesian
+https://iptv-org.github.io/iptv/languages/ind.m3u
+#EXTINF:-1,Italian
+https://iptv-org.github.io/iptv/languages/ita.m3u
+#EXTINF:-1,Japanese
+https://iptv-org.github.io/iptv/languages/jpn.m3u
+#EXTINF:-1,Javanese
+https://iptv-org.github.io/iptv/languages/jav.m3u
+#EXTINF:-1,Kazakh
+https://iptv-org.github.io/iptv/languages/kaz.m3u
+#EXTINF:-1,Khmer
+https://iptv-org.github.io/iptv/languages/khm.m3u
+#EXTINF:-1,Kinyarwanda
+https://iptv-org.github.io/iptv/languages/kin.m3u
+#EXTINF:-1,Korean
+https://iptv-org.github.io/iptv/languages/kor.m3u
+#EXTINF:-1,Kurdish
+https://iptv-org.github.io/iptv/languages/kur.m3u
+#EXTINF:-1,Lao
+https://iptv-org.github.io/iptv/languages/lao.m3u
+#EXTINF:-1,Latvian
+https://iptv-org.github.io/iptv/languages/lav.m3u
+#EXTINF:-1,Luxembourgish
+https://iptv-org.github.io/iptv/languages/ltz.m3u
+#EXTINF:-1,Macedonian
+https://iptv-org.github.io/iptv/languages/mkd.m3u
+#EXTINF:-1,Malay (macrolanguage)
+https://iptv-org.github.io/iptv/languages/msa.m3u
+#EXTINF:-1,Malayalam
+https://iptv-org.github.io/iptv/languages/mal.m3u
+#EXTINF:-1,Mandarin Chinese
+https://iptv-org.github.io/iptv/languages/cmn.m3u
+#EXTINF:-1,Min Nan Chinese
+https://iptv-org.github.io/iptv/languages/nan.m3u
+#EXTINF:-1,Modern Greek (1453-)
+https://iptv-org.github.io/iptv/languages/ell.m3u
+#EXTINF:-1,Mongolian
+https://iptv-org.github.io/iptv/languages/mon.m3u
+#EXTINF:-1,Norwegian Bokmål
+https://iptv-org.github.io/iptv/languages/nob.m3u
+#EXTINF:-1,Persian
+https://iptv-org.github.io/iptv/languages/fas.m3u
+#EXTINF:-1,Polish
+https://iptv-org.github.io/iptv/languages/pol.m3u
+#EXTINF:-1,Portuguese
+https://iptv-org.github.io/iptv/languages/por.m3u
+#EXTINF:-1,Pushto
+https://iptv-org.github.io/iptv/languages/pus.m3u
+#EXTINF:-1,Romanian
+https://iptv-org.github.io/iptv/languages/ron.m3u
+#EXTINF:-1,Russian
+https://iptv-org.github.io/iptv/languages/rus.m3u
+#EXTINF:-1,Serbian
+https://iptv-org.github.io/iptv/languages/srp.m3u
+#EXTINF:-1,Sinhala
+https://iptv-org.github.io/iptv/languages/sin.m3u
+#EXTINF:-1,Slovak
+https://iptv-org.github.io/iptv/languages/slk.m3u
+#EXTINF:-1,Slovenian
+https://iptv-org.github.io/iptv/languages/slv.m3u
+#EXTINF:-1,Somali
+https://iptv-org.github.io/iptv/languages/som.m3u
+#EXTINF:-1,Spanish
+https://iptv-org.github.io/iptv/languages/spa.m3u
+#EXTINF:-1,Swedish
+https://iptv-org.github.io/iptv/languages/swe.m3u
+#EXTINF:-1,Tagalog
+https://iptv-org.github.io/iptv/languages/tgl.m3u
+#EXTINF:-1,Tamil
+https://iptv-org.github.io/iptv/languages/tam.m3u
+#EXTINF:-1,Thai
+https://iptv-org.github.io/iptv/languages/tha.m3u
+#EXTINF:-1,Turkish
+https://iptv-org.github.io/iptv/languages/tur.m3u
+#EXTINF:-1,Turkmen
+https://iptv-org.github.io/iptv/languages/tuk.m3u
+#EXTINF:-1,Ukrainian
+https://iptv-org.github.io/iptv/languages/ukr.m3u
+#EXTINF:-1,Urdu
+https://iptv-org.github.io/iptv/languages/urd.m3u
+#EXTINF:-1,Vietnamese
+https://iptv-org.github.io/iptv/languages/vie.m3u
+#EXTINF:-1,Western Frisian
+https://iptv-org.github.io/iptv/languages/fry.m3u
+#EXTINF:-1,Yue Chinese
+https://iptv-org.github.io/iptv/languages/yue.m3u
+#EXTINF:-1,Undefined
+https://iptv-org.github.io/iptv/languages/undefined.m3u
+
+# Countries
+#EXTINF:-1,Afghanistan
+https://iptv-org.github.io/iptv/countries/af.m3u
+#EXTINF:-1,Albania
+https://iptv-org.github.io/iptv/countries/al.m3u
+#EXTINF:-1,Algeria
+https://iptv-org.github.io/iptv/countries/dz.m3u
+#EXTINF:-1,Andorra
+https://iptv-org.github.io/iptv/countries/ad.m3u
+#EXTINF:-1,Angola
+https://iptv-org.github.io/iptv/countries/ao.m3u
+#EXTINF:-1,Argentina
+https://iptv-org.github.io/iptv/countries/ar.m3u
+#EXTINF:-1,Armenia
+https://iptv-org.github.io/iptv/countries/am.m3u
+#EXTINF:-1,Aruba
+https://iptv-org.github.io/iptv/countries/aw.m3u
+#EXTINF:-1,Australia
+https://iptv-org.github.io/iptv/countries/au.m3u
+#EXTINF:-1,Austria
+https://iptv-org.github.io/iptv/countries/at.m3u
+#EXTINF:-1,Azerbaijan
+https://iptv-org.github.io/iptv/countries/az.m3u
+#EXTINF:-1,Bahrain
+https://iptv-org.github.io/iptv/countries/bh.m3u
+#EXTINF:-1,Bangladesh
+https://iptv-org.github.io/iptv/countries/bd.m3u
+#EXTINF:-1,Barbados
+https://iptv-org.github.io/iptv/countries/bb.m3u
+#EXTINF:-1,Belarus
+https://iptv-org.github.io/iptv/countries/by.m3u
+#EXTINF:-1,Belgium
+https://iptv-org.github.io/iptv/countries/be.m3u
+#EXTINF:-1,Bolivia
+https://iptv-org.github.io/iptv/countries/bo.m3u
+#EXTINF:-1,Bosnia and Herzegovina
+https://iptv-org.github.io/iptv/countries/ba.m3u
+#EXTINF:-1,Brazil
+https://iptv-org.github.io/iptv/countries/br.m3u
+#EXTINF:-1,Brunei
+https://iptv-org.github.io/iptv/countries/bn.m3u
+#EXTINF:-1,Bulgaria
+https://iptv-org.github.io/iptv/countries/bg.m3u
+#EXTINF:-1,Burkina Faso
+https://iptv-org.github.io/iptv/countries/bf.m3u
+#EXTINF:-1,Cambodia
+https://iptv-org.github.io/iptv/countries/kh.m3u
+#EXTINF:-1,Cameroon
+https://iptv-org.github.io/iptv/countries/cm.m3u
+#EXTINF:-1,Canada
+https://iptv-org.github.io/iptv/countries/ca.m3u
+#EXTINF:-1,Chile
+https://iptv-org.github.io/iptv/countries/cl.m3u
+#EXTINF:-1,China
+https://iptv-org.github.io/iptv/countries/cn.m3u
+#EXTINF:-1,Colombia
+https://iptv-org.github.io/iptv/countries/co.m3u
+#EXTINF:-1,Costa Rica
+https://iptv-org.github.io/iptv/countries/cr.m3u
+#EXTINF:-1,Croatia
+https://iptv-org.github.io/iptv/countries/hr.m3u
+#EXTINF:-1,Curaçao
+https://iptv-org.github.io/iptv/countries/cw.m3u
+#EXTINF:-1,Cyprus
+https://iptv-org.github.io/iptv/countries/cy.m3u
+#EXTINF:-1,Czech Republic
+https://iptv-org.github.io/iptv/countries/cz.m3u
+#EXTINF:-1,Democratic Republic of the Congo
+https://iptv-org.github.io/iptv/countries/cd.m3u
+#EXTINF:-1,Denmark
+https://iptv-org.github.io/iptv/countries/dk.m3u
+#EXTINF:-1,Dominican Republic
+https://iptv-org.github.io/iptv/countries/do.m3u
+#EXTINF:-1,Ecuador
+https://iptv-org.github.io/iptv/countries/ec.m3u
+#EXTINF:-1,Egypt
+https://iptv-org.github.io/iptv/countries/eg.m3u
+#EXTINF:-1,El Salvador
+https://iptv-org.github.io/iptv/countries/sv.m3u
+#EXTINF:-1,Equatorial Guinea
+https://iptv-org.github.io/iptv/countries/gq.m3u
+#EXTINF:-1,Eritrea
+https://iptv-org.github.io/iptv/countries/er.m3u
+#EXTINF:-1,Estonia
+https://iptv-org.github.io/iptv/countries/ee.m3u
+#EXTINF:-1,Ethiopia
+https://iptv-org.github.io/iptv/countries/et.m3u
+#EXTINF:-1,Faroe Islands
+https://iptv-org.github.io/iptv/countries/fo.m3u
+#EXTINF:-1,Finland
+https://iptv-org.github.io/iptv/countries/fi.m3u
+#EXTINF:-1,Fiji
+https://iptv-org.github.io/iptv/countries/fj.m3u
+#EXTINF:-1,France
+https://iptv-org.github.io/iptv/countries/fr.m3u
+#EXTINF:-1,Gambia
+https://iptv-org.github.io/iptv/countries/gm.m3u
+#EXTINF:-1,Georgia
+https://iptv-org.github.io/iptv/countries/ge.m3u
+#EXTINF:-1,Germany
+https://iptv-org.github.io/iptv/countries/de.m3u
+#EXTINF:-1,Ghana
+https://iptv-org.github.io/iptv/countries/gh.m3u
+#EXTINF:-1,Greece
+https://iptv-org.github.io/iptv/countries/gr.m3u
+#EXTINF:-1,Guadeloupe
+https://iptv-org.github.io/iptv/countries/gp.m3u
+#EXTINF:-1,Guyana
+https://iptv-org.github.io/iptv/countries/gy.m3u
+#EXTINF:-1,Haiti
+https://iptv-org.github.io/iptv/countries/ht.m3u
+#EXTINF:-1,Honduras
+https://iptv-org.github.io/iptv/countries/hn.m3u
+#EXTINF:-1,Hong Kong
+https://iptv-org.github.io/iptv/countries/hk.m3u
+#EXTINF:-1,Hungary
+https://iptv-org.github.io/iptv/countries/hu.m3u
+#EXTINF:-1,Iceland
+https://iptv-org.github.io/iptv/countries/is.m3u
+#EXTINF:-1,India
+https://iptv-org.github.io/iptv/countries/in.m3u
+#EXTINF:-1,Indonesia
+https://iptv-org.github.io/iptv/countries/id.m3u
+#EXTINF:-1,International
+https://iptv-org.github.io/iptv/countries/int.m3u
+#EXTINF:-1,Iran
+https://iptv-org.github.io/iptv/countries/ir.m3u
+#EXTINF:-1,Iraq
+https://iptv-org.github.io/iptv/countries/iq.m3u
+#EXTINF:-1,Ireland
+https://iptv-org.github.io/iptv/countries/ie.m3u
+#EXTINF:-1,Italy
+https://iptv-org.github.io/iptv/countries/it.m3u
+#EXTINF:-1,Ivory Coast
+https://iptv-org.github.io/iptv/countries/ci.m3u
+#EXTINF:-1,Jamaica
+https://iptv-org.github.io/iptv/countries/jm.m3u
+#EXTINF:-1,Japan
+https://iptv-org.github.io/iptv/countries/jp.m3u
+#EXTINF:-1,Jordan
+https://iptv-org.github.io/iptv/countries/jo.m3u
+#EXTINF:-1,Kazakhstan
+https://iptv-org.github.io/iptv/countries/kz.m3u
 
