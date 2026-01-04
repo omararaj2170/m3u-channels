@@ -6,9 +6,7 @@
 <title>IPTV Player</title>
 
 <style>
-* {
-  box-sizing: border-box;
-}
+* { box-sizing: border-box; }
 
 body {
   margin: 0;
@@ -17,23 +15,215 @@ body {
   font-family: Arial, sans-serif;
 }
 
-/* ===== PLAYER ===== */
-#player {
-  position: relative;
-  z-index: 1;
-  background: black;
+/* ===== LOADING ===== */
+#loading {
+  position: fixed;
+  inset: 0;
+  background: #0b0b0b;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  z-index: 999;
 }
 
-video {
-  width: 100%;
-  height: auto;
+.bar {
+  width: 200px;
+  height: 4px;
+  background: #222;
+  overflow: hidden;
+  border-radius: 4px;
 }
+
+.bar::after {
+  content: "";
+  display: block;
+  height: 100%;
+  width: 40%;
+  background: #00ff88;
+  animation: load 1s infinite linear;
+}
+
+@keyframes load {
+  from { transform: translateX(-100%); }
+  to { transform: translateX(250%); }
+}
+
+/* ===== PLAYER ===== */
+#player { background: black; }
+video { width: 100%; }
 
 /* ===== SEARCH ===== */
 #search {
   width: 100%;
   padding: 14px;
   font-size: 16px;
+  border: none;
+  outline: none;
+  background: #111;
+  color: white;
+}
+
+/* ===== CHANNEL LIST ===== */
+#channels {
+  height: calc(100vh - 220px);
+  overflow-y: auto;
+  -webkit-overflow-scrolling: touch;
+}
+
+.group {
+  padding: 8px 12px;
+  font-size: 13px;
+  font-weight: bold;
+  background: #111;
+  color: #aaa;
+  border-bottom: 1px solid #222;
+}
+
+.channel {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 14px;
+  border-bottom: 1px solid #222;
+  cursor: pointer;
+  -webkit-tap-highlight-color: transparent;
+}
+
+.channel:active { background: #222; }
+
+.channel img {
+  width: 42px;
+  height: 42px;
+  object-fit: contain;
+  background: #000;
+  border-radius: 6px;
+}
+</style>
+</head>
+
+<body>
+
+<div id="loading">
+  <div class="bar"></div>
+  <span>Loading channels…</span>
+</div>
+
+<div id="player">
+  <video id="video" controls playsinline muted></video>
+</div>
+
+<input id="search" placeholder="Search channels...">
+
+<div id="channels"></div>
+
+<script src="https://cdn.jsdelivr.net/npm/hls.js@latest"></script>
+<script>
+const M3U_URL = "./playlist.m3u"; // 👈 LOCAL FILE
+const MAX_RENDER = 300;
+
+let allChannels = [];
+let hls;
+let searchTimer;
+
+/* ===== LOAD PLAYLIST ===== */
+fetch(M3U_URL)
+  .then(r => r.text())
+  .then(data => {
+    parseM3U(data);
+    document.getElementById("loading").style.display = "none";
+    render(allChannels);
+  })
+  .catch(err => {
+    alert("Failed to load playlist.m3u");
+    console.error(err);
+  });
+
+function parseM3U(data) {
+  const lines = data.split("\n");
+  let ch = {};
+
+  for (let line of lines) {
+    line = line.trim();
+
+    if (line.startsWith("#EXTINF")) {
+      ch = {
+        name: line.split(",").pop(),
+        logo: (line.match(/tvg-logo="([^"]+)"/) || [])[1] || "",
+        group: (line.match(/group-title="([^"]+)"/) || [])[1] || "Other"
+      };
+    } else if (line.startsWith("http")) {
+      ch.url = line;
+      allChannels.push(ch);
+    }
+  }
+}
+
+/* ===== RENDER ===== */
+function render(list) {
+  const container = document.getElementById("channels");
+  container.innerHTML = "";
+
+  const frag = document.createDocumentFragment();
+  let currentGroup = "";
+  let count = 0;
+
+  for (let ch of list) {
+    if (count >= MAX_RENDER) break;
+
+    if (ch.group !== currentGroup) {
+      currentGroup = ch.group;
+      const g = document.createElement("div");
+      g.className = "group";
+      g.textContent = currentGroup;
+      frag.appendChild(g);
+    }
+
+    const div = document.createElement("div");
+    div.className = "channel";
+    div.innerHTML = `
+      <img src="${ch.logo}" onerror="this.style.display='none'">
+      <span>${ch.name}</span>
+    `;
+
+    div.addEventListener("touchstart", () => play(ch.url), { passive: true });
+    div.addEventListener("click", () => play(ch.url));
+
+    frag.appendChild(div);
+    count++;
+  }
+
+  container.appendChild(frag);
+}
+
+/* ===== PLAYER ===== */
+function play(url) {
+  const video = document.getElementById("video");
+
+  if (Hls.isSupported()) {
+    if (hls) hls.destroy();
+    hls = new Hls();
+    hls.loadSource(url);
+    hls.attachMedia(video);
+  } else {
+    video.src = url;
+  }
+}
+
+/* ===== SEARCH (DEBOUNCED) ===== */
+document.getElementById("search").addEventListener("input", e => {
+  clearTimeout(searchTimer);
+  searchTimer = setTimeout(() => {
+    const q = e.target.value.toLowerCase();
+    render(
+      q ? allChannels.filter(c => c.name.toLowerCase().includes(q)) : allChannels
+    );
+  }, 250);
+});
+</script>
+
+</body>
+</html>
   border: none;
   outline: none;
   background: #111;
