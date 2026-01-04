@@ -161,7 +161,6 @@ function render(list) {
         c.appendChild(div);
     });
 }
-
 function play(url) {
     const video = document.getElementById("video");
 
@@ -170,9 +169,17 @@ function play(url) {
         hls = new Hls();
         hls.loadSource(url);
         hls.attachMedia(video);
+
+        hls.on(Hls.Events.MANIFEST_PARSED, function () {
+            video.play().catch(() => {});
+        });
+
     } else if (video.canPlayType("application/vnd.apple.mpegurl")) {
         video.src = url;
+        video.play().catch(() => {});
     }
+}
+
 }
 
 document.getElementById("search").addEventListener("input", e => {
@@ -180,6 +187,5 @@ document.getElementById("search").addEventListener("input", e => {
     render(allChannels.filter(c => c.name.toLowerCase().includes(q)));
 });
 </script>
-
 </body>
 </html>
