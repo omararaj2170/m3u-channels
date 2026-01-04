@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>IPTV TV</title>
+
+<style>
+* { box-sizing: border-box; }
+
+body {
+  margin: 0;
+  background: black;
+  color: white;
+  font-family: Arial, sans-serif;
+  overflow: hidden;
+}
+
+/* ===== PLAYER ===== */
+#player {
+  height: 55vh;
+  background: black;
+}
+
+video {
+  width: 100%;
+  height: 100%;
+  background: black;
+}
+
+/* ===== CHANNEL LIST ===== */
+#channels {
+  height: 45vh;
+  overflow-y: auto;
+  background: #0b0b0b;
+}
+
+.channel {
+  padding: 18px 24px;
+  font-size: 22px;
+  border-bottom: 1px solid #222;
+}
+
+.channel.focused {
+  background: #00ff88;
+  color: black;
+}
+
+/* ===== LOADING ===== */
+#loading {
+  position: fixed;
+  inset: 0;
+  background: black;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 22px;
+}
+</style>
+</head>
+
+<body>
+
+<div id="loading">Loading IPTV…</div>
+
+<div id="player">
+  <video id="video" controls autoplay></video>
+</div>
+
+<div id="channels"></div>
+
+<script src="https://cdn.jsdelivr.net/npm/hls.js@latest"></script>
+<script>
+const M3U_URL = "./playlist.m3u";
+const MAX_RENDER = 200;
+
+let channels = [];
+let focusedIndex = 0;
+let hls;
+
+/* ===== LOAD PLAYLIST ===== */
+fetch(M3U_URL)
+  .then(r => r.text())
+  .then(parseM3U);
+
+function parseM3U(data) {
+  const lines = data.split("\n");
+  let ch = {};
+
+  for (let line of lines) {
+    line = line.trim();
+
+    if (line.startsWith("#EXTINF")) {
+      ch = { name: line.split(",").pop() };
+    } else if (line.startsWith("http")) {
+      ch.url = line;
+      channels.push(ch);
+    }
+  }
+
+  render();
+  document.getElementById("loading").style.display = "none";
+}
+
+/* ===== RENDER ===== */
+function render() {
+  const list = document.getElementById("channels");
+  list.innerHTML = "";
+
+  channels.slice(0, MAX_RENDER).forEach((ch, i) => {
+    const div = document.createElement("div");
+    div.className = "channel" + (i === focusedIndex ? " focused" : "");
+    div.textContent = ch.name;
+    list.appendChild(div);
+  });
+
+  scrollToFocused();
+}
+
+/* ===== PLAY ===== */
+function play(index) {
+  const video = document.getElementById("video");
+  const url = channels[index].url;
+
+  if (Hls.isSupported()) {
+    if (hls) hls.destroy();
