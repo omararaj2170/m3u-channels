@@ -1,39 +1,44 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Mobile IPTV</title>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>IPTV Playlist</title>
 
-<script src="https://cdn.jsdelivr.net/npm/hls.js@latest"></script>
+  <style>
+    body {
+      margin: 0;
+      height: 100vh;
+      background: #0b0b0b;
+      color: white;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-family: Arial, sans-serif;
+    }
 
-<style>
-body {
-    margin: 0;
-    font-family: Arial, sans-serif;
-    background: #000;
-    color: #fff;
-}
+    a {
+      text-decoration: none;
+      background: #1f1f1f;
+      padding: 20px 30px;
+      border-radius: 14px;
+      font-size: 20px;
+      color: white;
+    }
 
-/* ===== VIDEO ===== */
-#player {
-    width: 100%;
-    background: black;
-}
+    a:active {
+      background: #333;
+    }
+  </style>
+</head>
+<body>
 
-video {
-    width: 100%;
-    height: 220px;
-    background: black;
-}
+  <a href="playlist.m3u">
+    ▶ Open IPTV Playlist
+  </a>
 
-/* ===== SEARCH ===== */
-#search {
-    width: 100%;
-    padding: 12px;
-    border: none;
-    outline: none;
-    background: #111;
+</body>
+</html>
     color: white;
     font-size: 16px;
 }
