@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Redirecting...</title>
+  <style>
+    body {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      background-color: #111;
+      color: #fff;
+      font-family: Arial, sans-serif;
+      flex-direction: column;
+    }
+    .loader {
+      width: 300px;
+      height: 25px;
+      border: 2px solid #555;
+      border-radius: 5px;
+      overflow: hidden;
+      margin-top: 20px;
+    }
+    .bar {
+      height: 100%;
+      width: 0%;
+      background: linear-gradient(90deg, #00f, #0ff);
+      transition: width 0.2s;
+    }
+    p {
+      margin-top: 10px;
+    }
+  </style>
+</head>
+<body>
+  <h1>Redirecting...</h1>
+  <div class="loader">
+    <div class="bar" id="bar"></div>
+  </div>
+  <p id="percent">0%</p>
+
+  <script>
+    let width = 0;
+    let interval = setInterval(() => {
+      if(width >= 100) {
+        clearInterval(interval);
+        window.location.href = "index-mobile.html"; // redirect to itself
+      } else {
+        width += 2; // adjust speed
+        document.getElementById("bar").style.width = width + "%";
+        document.getElementById("percent").innerText = width + "%";
+      }
+    }, 50); // adjust interval speed
+  </script>
+</body>
+</html>
